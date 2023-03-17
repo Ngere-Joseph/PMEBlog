@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PMEBlog.Models.Post>
+@{
+    ViewBag.Title = "My Blog";
+}
+
+@if (ViewBag.Message != null)
+{
+    <h4>@ViewBag.Message</h4>
+}
+
+@*@if (Model == null || Mod.Count == 0)
+{
+    <h4>Blog empty</h4>
+    <p>Either under development, or author is busy. Visit back again later! :-)</p>
+    <a href="~/post/addoredit">Create new post</a>
+}*@
+else
+{
+    <h4>My blog</h4>
+    <p>Read my blog posts below...</p>
+    // Content is available.
+    <a href="~/blog/create">Create new post</a>
+ 
+        //<h4><a href="~/blog/read/@post.Title">@post.Title</a></h4>
+        
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Content)
+                            </th>
+                            <th></th>
+                            <th>Edit</th>
+                            <th>Details</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Content)
+                                </td>
+
+                                <td>
+                                <td class="text-center">
+                                    <a asp-action="AddOrEdit" class="btn btn-outline-primary" asp-route-employeeId="@item.Id">Edit</a>
+                                </td>
+                                <td class="text-center">
+                                    <a asp-action="Details" class="btn btn-outline-info" asp-route-employeeId="@item.Id">Details</a>
+                                </td>
+                                <td class="text-center">
+                                    <a asp-action="Delete" class="btn btn-outline-danger" asp-route-employeeId="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+             
+      
+    }
+}  
